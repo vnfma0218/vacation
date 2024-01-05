@@ -1,11 +1,9 @@
-import { FC } from 'react';
+import ReservationSearch from '@/components/ReservationSearch';
 
-interface pageProps {}
-
-const page: FC<pageProps> = ({}) => {
+const page = ({}) => {
   return (
     <main className="max-w-6xl mx-auto px-10 mt-10">
-      <div className="text-center"></div>
+      <ReservationSearch />
     </main>
   );
 };

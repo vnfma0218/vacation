@@ -1,3 +1,5 @@
+import { title } from 'process';
+
 export type HotelCategory = {
   id: string;
   title: string;
@@ -7,7 +9,9 @@ export type HotelCategory = {
 export type Hotel = {
   id: string;
   name: string;
-  location: string;
+  location: {
+    title: string;
+  };
   price: number;
   discountPrice: number;
   rate: number;

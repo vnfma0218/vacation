@@ -1,5 +1,6 @@
 import { client } from '../../sanity/lib/client';
 import { v4 as uuidv4 } from 'uuid';
+import { urlFor } from './sanity';
 
 export async function postReservation(
   name: string,
@@ -24,7 +25,32 @@ export async function postReservation(
       name,
       visitType,
     })
-    .then((res) => {
+    .then(() => {
       return { success: confirmNum };
+    });
+}
+
+export async function getReservationByConfirmNumber(confirmNumber: string) {
+  return client
+    .fetch(
+      `*[_type == "reservation" && confirmNumber == "${confirmNumber}"][0]{
+      ...,
+      hotel->{
+        ...,
+        location->{
+          ...,
+        }
+      },
+    
+    }`
+    )
+    .then((reservation) => {
+      return {
+        ...reservation,
+        hotel: {
+          ...reservation.hotel,
+          mainImage: urlFor(reservation.hotel.mainImage),
+        },
+      };
     });
 }

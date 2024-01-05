@@ -80,10 +80,10 @@ const HotelDetail: FC<HotelDetailProps> = ({ id }) => {
                 <div className="mt-10 border-t border-t-gray-200">
                   <p className="text-lg font-bold mt-5 mb-6">숙소 소개</p>
                   <p className="text-gray-500">
-                    양양의 해수욕장과 산을 즐기기에 편리한 위치로 편리하고
-                    편안한 휴식을 즐길 수 있는 호텔입니다 <br /> 모던하고 깔끔한
-                    느낌의 외관과 항상 청결하고 쾌적하게 관리되는 객실이
-                    마련되어 있습니다
+                    해수욕장과 산을 즐기기에 편리한 위치로 편리하고 편안한
+                    휴식을 즐길 수 있는 호텔입니다 <br /> 모던하고 깔끔한 느낌의
+                    외관과 항상 청결하고 쾌적하게 관리되는 객실이 마련되어
+                    있습니다
                   </p>
                 </div>
               </div>

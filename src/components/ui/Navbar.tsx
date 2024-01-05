@@ -9,7 +9,7 @@ const Navbar = () => {
         </h2>
         <ul>
           <li>
-            <Link href={'/confirm'}>에약조회</Link>
+            <Link href={'/confirm'}>예약조회</Link>
           </li>
         </ul>
       </div>
