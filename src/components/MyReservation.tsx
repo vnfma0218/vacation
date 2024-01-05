@@ -11,7 +11,7 @@ interface MyReservationProps {
 }
 
 const MyReservation: FC<MyReservationProps> = ({ confirmId }) => {
-  const { data: reservation, isLoading } = useSWR<Reservation>(
+  const { data: reservation } = useSWR<Reservation>(
     `/api/reservation/${confirmId}`,
     () => getReservationByConfirmNumber(confirmId)
   );
@@ -50,7 +50,7 @@ const MyReservation: FC<MyReservationProps> = ({ confirmId }) => {
                   {reservation?.hotel.name}
                 </p>
                 <p className="text-sm text-gray-400">
-                  {reservation?.hotel.location['title']}
+                  {reservation?.hotel.location}
                 </p>
               </div>
             </div>

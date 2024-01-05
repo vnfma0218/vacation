@@ -37,9 +37,7 @@ export async function getReservationByConfirmNumber(confirmNumber: string) {
       ...,
       hotel->{
         ...,
-        location->{
-          ...,
-        }
+        location->title,
       },
     
     }`

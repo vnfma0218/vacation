@@ -3,7 +3,6 @@ import { Hotel } from '@/models/hotel';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FC } from 'react';
-import { FaStar } from 'react-icons/fa';
 import RateStar from './RateStar';
 
 interface HotelCardProps {
