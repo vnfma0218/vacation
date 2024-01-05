@@ -1,8 +1,8 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { FC, useState } from 'react';
 
 import { IoMdClose } from 'react-icons/io';
 import { useOutsideClick } from '@/app/hooks/useOutsideClick';
-import { LocationSelect } from '../LocationSelect';
+import LocationSelect from '../LocationSelect';
 
 interface SearchBarTextInputProps {
   error: boolean;

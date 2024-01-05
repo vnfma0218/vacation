@@ -57,5 +57,6 @@ const OrderFilter = forwardRef<HTMLDivElement, OrderFilterProps>(
     );
   }
 );
+OrderFilter.displayName = 'OrderFilter';
 
 export default OrderFilter;
