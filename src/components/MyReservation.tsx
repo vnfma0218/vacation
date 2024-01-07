@@ -5,17 +5,24 @@ import { FC } from 'react';
 import useSWR from 'swr';
 import BackButton from './ui/BackButton';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 
 interface MyReservationProps {
   confirmId: string;
 }
 
 const MyReservation: FC<MyReservationProps> = ({ confirmId }) => {
+  const param = useSearchParams();
+  // const confirmId = param.get('confirmId');
+  console.log('confirmId', confirmId);
+  // const { data: reservation } = useSWR<Reservation>(
+  //   `/api/myReservation/${confirmId}`,
+  //   () => getReservationByConfirmNumber(confirmId!)
+  // );
   const { data: reservation } = useSWR<Reservation>(
-    `/api/reservation/${confirmId}`,
-    () => getReservationByConfirmNumber(confirmId)
+    `/api/reservation/${confirmId}`
   );
-  console.log(reservation);
+  console.log('reservation222', reservation);
   return (
     <div>
       <div className="flex items-center text-2xl font-semibold">

@@ -5,7 +5,7 @@ import CarouselWrapper from '../CarouselWrapper';
 import HotelCard from './HotelCard';
 import { getHotelsByTag } from '@/services/hotels';
 import { BeatLoader } from 'react-spinners';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const SaleList = ({}) => {
   const { data: saleHotels, isLoading } = useSWR<Hotel[]>(
@@ -13,6 +13,13 @@ const SaleList = ({}) => {
     () => getHotelsByTag('sale')
   );
   const [isDragging, setIsDragging] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      if (isDragging) {
+        setIsDragging(false);
+      }
+    }, 1000);
+  }, [isDragging]);
 
   const beforeChange = () => {
     setIsDragging(true);

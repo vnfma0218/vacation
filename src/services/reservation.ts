@@ -34,13 +34,13 @@ export async function getReservationByConfirmNumber(confirmNumber: string) {
   return client
     .fetch(
       `*[_type == "reservation" && confirmNumber == "${confirmNumber}"][0]{
-      ...,
-      hotel->{
         ...,
-        location->title,
-      },
-    
-    }`
+        hotel->{
+          ...,
+          "location":location->title
+      
+        }
+      }`
     )
     .then((reservation) => {
       return {

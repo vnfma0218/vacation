@@ -42,7 +42,7 @@ const CarouselWrapper: FC<CarouselWrapperProps> = ({
     swipeToSlide: false,
     swipe: false,
 
-    lazyLoad: 'ondemand' as LazyLoadTypes,
+    // lazyLoad: 'ondemand' as LazyLoadTypes,
     nextArrow: (
       <SampleNextArrow
         className={undefined}
