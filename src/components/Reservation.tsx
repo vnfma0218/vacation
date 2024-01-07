@@ -78,7 +78,7 @@ const Reservation: FC<ReservationProps> = ({ hotelId }) => {
 
   return (
     <>
-      <div className="basis-2/3 h-screen">
+      <div className="basis-2/3">
         <div className="flex items-center">
           <BackButton />
           <h2 className="font-bold text-2xl ml-4">예약 확인</h2>
@@ -92,7 +92,7 @@ const Reservation: FC<ReservationProps> = ({ hotelId }) => {
         />
       </div>
 
-      <div className="basis-1/3 h-screen">
+      <div className="basis-1/3">
         <PaymentSummary hotelId={hotelId} onSubmitForm={onSubmitForm} />
       </div>
 

@@ -39,7 +39,7 @@ const HotelDetail: FC<HotelDetailProps> = ({ id }) => {
   };
   return (
     <>
-      <section className="mt-10 h-screen">
+      <section className="h-screen">
         {isLoading && (
           <div className="flex justify-center h-32">
             <BeatLoader color="red" />
@@ -49,7 +49,7 @@ const HotelDetail: FC<HotelDetailProps> = ({ id }) => {
           <>
             <HotelImages
               name={hotel.name}
-              images={[hotel.mainImage, '', '', '', '', '', '']}
+              images={[hotel.mainImage, '', '', '', '', '']}
             />
             <div className="mt-10 flex">
               <div className="basis-2/3 mr-10">

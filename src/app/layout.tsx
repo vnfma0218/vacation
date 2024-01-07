@@ -23,7 +23,7 @@ export default function RootLayout({
         <SWRConfigContext>
           <CheckoutInfoContext>
             <Navbar />
-            {children}
+            <div className="mt-[72px]">{children}</div>
             <div id="modal"></div>
           </CheckoutInfoContext>
         </SWRConfigContext>

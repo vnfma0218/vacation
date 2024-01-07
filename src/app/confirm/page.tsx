@@ -2,7 +2,7 @@ import ReservationSearch from '@/components/ReservationSearch';
 
 const page = ({}) => {
   return (
-    <main className="max-w-6xl mx-auto px-10 mt-10">
+    <main className="max-w-6xl mx-auto px-10 pt-10">
       <ReservationSearch />
     </main>
   );

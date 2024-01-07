@@ -10,11 +10,9 @@ interface pageProps {
 
 const page: FC<pageProps> = ({ params: { id } }) => {
   return (
-    <section>
-      <div className="max-w-6xl mx-auto px-10 mt-10">
-        <HotelDetail id={id} />
-      </div>
-    </section>
+    <main className="max-w-6xl mx-auto px-10 pt-5">
+      <HotelDetail id={id} />
+    </main>
   );
 };
 

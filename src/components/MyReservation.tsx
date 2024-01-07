@@ -5,31 +5,28 @@ import { FC } from 'react';
 import useSWR from 'swr';
 import BackButton from './ui/BackButton';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
+import { BeatLoader } from 'react-spinners';
 
 interface MyReservationProps {
   confirmId: string;
 }
 
 const MyReservation: FC<MyReservationProps> = ({ confirmId }) => {
-  const param = useSearchParams();
-  // const confirmId = param.get('confirmId');
-  console.log('confirmId', confirmId);
-  // const { data: reservation } = useSWR<Reservation>(
-  //   `/api/myReservation/${confirmId}`,
-  //   () => getReservationByConfirmNumber(confirmId!)
-  // );
-  const { data: reservation } = useSWR<Reservation>(
+  const { data: reservation, isLoading } = useSWR<Reservation>(
     `/api/reservation/${confirmId}`
   );
-  console.log('reservation222', reservation);
   return (
     <div>
       <div className="flex items-center text-2xl font-semibold">
         <BackButton />
         <span className="ml-5">예약내역 상세</span>
       </div>
-      {!reservation && (
+      {isLoading && (
+        <div className="flex justify-center items-center mt-20">
+          <BeatLoader color="red" />
+        </div>
+      )}
+      {!reservation && !isLoading && (
         <div className="text-center mt-20">
           <p className="text-3xl">예약 내역이 없습니다</p>
           <p className="text-lg mt-10 text-gray-500">
