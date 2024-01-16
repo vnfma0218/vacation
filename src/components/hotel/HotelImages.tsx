@@ -9,14 +9,17 @@ interface HotelImagesProps {
 }
 
 const HotelImages: FC<HotelImagesProps> = ({ images, name }) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState({
+    show: false,
+    index: 0,
+  });
   const mainImage = images[0];
   const otherImages = images.slice(1, 5);
   return (
     <>
       <div className="flex gap-3">
         <div
-          onClick={() => setShowModal(true)}
+          onClick={() => setShowModal({ show: true, index: 0 })}
           className="group cursor-pointer relative basis-1/2 h-[400px rounded-l-lg overflow-hidden"
         >
           <Image src={mainImage ?? ''} alt="hotel detail" fill />
@@ -25,7 +28,12 @@ const HotelImages: FC<HotelImagesProps> = ({ images, name }) => {
         <div className="basis-1/2 h-[400px] grid grid-cols-2 gap-2">
           {otherImages.map((_, index) => (
             <div
-              onClick={() => setShowModal(true)}
+              onClick={() =>
+                setShowModal({
+                  show: true,
+                  index: index + 1,
+                })
+              }
               key={index}
               className="group cursor-pointer relative"
             >
@@ -39,12 +47,13 @@ const HotelImages: FC<HotelImagesProps> = ({ images, name }) => {
           ))}
         </div>
       </div>
-      {showModal && (
+      {showModal.show && (
         <ModalWrapper>
           <HotelDetailModal
+            initalIndex={showModal.index}
             name={name}
             images={images}
-            closeModal={() => setShowModal(false)}
+            closeModal={() => setShowModal({ show: false, index: 0 })}
           />
         </ModalWrapper>
       )}

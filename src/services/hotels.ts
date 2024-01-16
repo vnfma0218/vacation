@@ -37,9 +37,11 @@ export async function getHotelsById(id: string) {
 export async function getHotelsByFilters(location: string, filter: Filters) {
   const loc =
     location !== '전체' ? `&& location -> title == "${filter.location}"` : '';
+
   const price = filter.isPriceLimited
     ? `&& price >= ${filter.price.min} && price <= ${filter.price.max}`
     : '';
+
   const category =
     filter.type !== '전체' ? `&& category -> title == "${filter.type}"` : '';
 

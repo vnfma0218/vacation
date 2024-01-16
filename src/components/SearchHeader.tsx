@@ -6,13 +6,19 @@ import { useOutsideClick } from '@/app/hooks/useOutsideClick';
 interface SearchHeaderProps {
   resultCnt: number;
   changeOrder: (sort: string) => void;
+  selectedCategory: string;
 }
 
-const SearchHeader: FC<SearchHeaderProps> = ({ changeOrder, resultCnt }) => {
+const SearchHeader: FC<SearchHeaderProps> = ({
+  changeOrder,
+  resultCnt,
+  selectedCategory,
+}) => {
   const [showSort, setShowSort] = useState(false);
   const [selectedSort, setSelectedSort] = useState('추천순');
   const searchParams = useSearchParams();
   const keyword = searchParams.get('keyword');
+  const searchType = searchParams.get('searchType');
   const ref = useOutsideClick(() => setShowSort(false));
 
   const onSelectSort = (sort: { label: string; value: string }) => {
@@ -23,7 +29,9 @@ const SearchHeader: FC<SearchHeaderProps> = ({ changeOrder, resultCnt }) => {
 
   return (
     <header className="flex justify-between items-center mb-10">
-      <p className="text-2xl font-bold">{`'${keyword}' 숙소 ${resultCnt}개`}</p>
+      <p className="text-2xl font-bold">{`'${
+        searchType === 'KEYWORD' ? keyword : selectedCategory
+      }' 숙소 ${resultCnt}개`}</p>
       <OrderFilter
         ref={ref}
         selectedSort={selectedSort}

@@ -41,7 +41,6 @@ const ConfirmModal: FC<ConfirmModalProps> = ({
             <Button
               isLoading={isLoading}
               onClick={() => {
-                console.log('confirm');
                 onConfirm();
               }}
             >

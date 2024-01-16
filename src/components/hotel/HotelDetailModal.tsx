@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { FC, useCallback, useRef } from 'react';
+import { FC, useCallback, useEffect, useRef } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import Slider from 'react-slick';
 import { IoIosArrowForward } from 'react-icons/io';
@@ -10,6 +10,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 interface HotelDetailModalProps {
+  initalIndex: number;
   images: string[];
   name: string;
   closeModal: () => void;
@@ -18,6 +19,7 @@ interface HotelDetailModalProps {
 const HotelDetailModal: FC<HotelDetailModalProps> = ({
   images,
   name,
+  initalIndex,
   closeModal,
 }) => {
   const slickRef = useRef<Slider | null>(null);
@@ -39,6 +41,12 @@ const HotelDetailModal: FC<HotelDetailModalProps> = ({
       closeModal();
     }
   };
+
+  useEffect(() => {
+    if (slickRef.current) {
+      slickRef.current.slickGoTo(initalIndex, true);
+    }
+  }, [slickRef]);
 
   return (
     <div

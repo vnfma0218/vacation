@@ -3,13 +3,31 @@ import { HotelCategory } from '@/models/hotel';
 import { getCategoryList } from '@/services/category';
 import Image from 'next/image';
 import { BeatLoader } from 'react-spinners';
+import { useRouter } from 'next/navigation';
+
 import useSWR from 'swr';
+import { useContext } from 'react';
+import { CheckoutContext } from '@/context/CheckoutInfoContext';
+import { format } from 'date-fns';
 
 const CategoryList = ({}) => {
+  const router = useRouter();
+  const { checkoutInfo } = useContext(CheckoutContext);
+
   const { data: categories, isLoading } = useSWR<HotelCategory[]>(
     '/api/hotels/category',
     () => getCategoryList()
   );
+
+  const searchByCategory = (title: string) => {
+    const people = checkoutInfo.personal;
+    const checkIn = format(checkoutInfo.checkIn, 'yyyy-MM-dd');
+    const checkOut = format(checkoutInfo.checkOut, 'yyyy-MM-dd');
+
+    router.push(
+      `/search?keyword=${title}&searchType=CATEGORY&checkIn=${checkIn}&checkOut=${checkOut}&personal=${people}`
+    );
+  };
   return (
     <section className="my-10 ">
       <p className="font-bold mb-3">원하는 숙소를 PICK!</p>
@@ -40,7 +58,10 @@ const CategoryList = ({}) => {
                     </p>
                   </div>
                   <div className="absolute bottom-5 left-2">
-                    <p className="bg-white py-1 px-3 rounded-md font-bold text-xs cursor-pointer">
+                    <p
+                      onClick={() => searchByCategory(category.title)}
+                      className="bg-white py-1 px-3 rounded-md font-bold text-xs cursor-pointer"
+                    >
                       {`${category.hotelCount}개의 숙소 더보러 가기`}
                     </p>
                   </div>

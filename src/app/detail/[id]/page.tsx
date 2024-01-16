@@ -1,5 +1,4 @@
 import HotelDetail from '@/components/hotel/HotelDetail';
-import Image from 'next/image';
 import { FC } from 'react';
 
 interface pageProps {

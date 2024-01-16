@@ -22,10 +22,11 @@ export type Filters = {
 const SearchMain = ({}) => {
   const searchParams = useSearchParams();
   const keyword = searchParams.get('keyword');
+  const searchType = searchParams.get('searchType');
 
   const [selectedFilter, setSelectedFilter] = useState<Filters>({
-    location: keyword!,
-    type: '전체',
+    location: keyword ?? '전체',
+    type: searchType === 'KEYWORD' ? '전체' : keyword!,
     isPriceLimited: false,
     price: {
       min: 0,
@@ -44,7 +45,11 @@ ${
     : ``
 }
     `,
-    () => getHotelsByFilters(keyword!, selectedFilter)
+    () =>
+      getHotelsByFilters(
+        searchType === 'KEYWORD' ? keyword! : '전체',
+        selectedFilter
+      )
   );
 
   const onChangeType = (type: string) => {
@@ -74,6 +79,7 @@ ${
   return (
     <div>
       <SearchHeader
+        selectedCategory={selectedFilter.type}
         resultCnt={hotels?.length ?? 0}
         changeOrder={onChangeOrder}
       />
