@@ -32,8 +32,21 @@ const CategoryList = ({}) => {
     <section className="my-10 ">
       <p className="font-bold mb-3">원하는 숙소를 PICK!</p>
       {isLoading ? (
-        <div className="flex justify-center h-32">
-          <BeatLoader color="red" />
+        <div
+          role="status"
+          className="flex flex-wrap md:flex-nowrap gap-5 space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center"
+        >
+          {Array.from({ length: 4 }).map((_, index) => (
+            <li className="w-full relative list-none">
+              <div
+                key={index}
+                className="flex items-center justify-center
+                relative m-auto lg:max-w-[350px] lg:h-[300px] md:max-w-[250px] md:h-[200px]
+                     w-[200px] h-[150px]
+                 bg-gray-300 rounded  dark:bg-gray-700"
+              ></div>
+            </li>
+          ))}
         </div>
       ) : (
         <ul className="flex flex-wrap md:flex-nowrap gap-5">
