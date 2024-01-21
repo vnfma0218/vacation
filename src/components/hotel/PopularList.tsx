@@ -40,7 +40,7 @@ const PopularList = ({}) => {
           className="flex flex-wrap md:flex-nowrap gap-5 space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center"
         >
           {Array.from({ length: 4 }).map((_, index) => (
-            <li className="list-none w-full">
+            <li key={index} className="list-none w-full">
               <div
                 key={index}
                 className="
