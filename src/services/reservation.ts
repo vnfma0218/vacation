@@ -37,9 +37,11 @@ export async function getReservationByConfirmNumber(confirmNumber: string) {
         ...,
         hotel->{
           ...,
+          "id":_id,
           "location":location->title
-      
-        }
+        
+        },
+        
       }`
     )
     .then((reservation) => {

@@ -9,7 +9,7 @@ interface pageProps {
 
 const page: FC<pageProps> = ({ params: { id } }) => {
   return (
-    <main className="max-w-6xl mx-auto px-10 mt-10">
+    <main className="max-w-6xl mx-auto px-10 pt-5">
       <MyReservation confirmId={id} />
     </main>
   );

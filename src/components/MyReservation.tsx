@@ -1,11 +1,13 @@
 'use client';
 import { Reservation } from '@/models/reservation';
-import { getReservationByConfirmNumber } from '@/services/reservation';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import useSWR from 'swr';
 import BackButton from './ui/BackButton';
 import Image from 'next/image';
 import { BeatLoader } from 'react-spinners';
+import { Button } from './ui/Button';
+import ReviewModal from './ReviewModal';
+import { getReservationByConfirmNumber } from '@/services/reservation';
 
 interface MyReservationProps {
   confirmId: string;
@@ -13,8 +15,18 @@ interface MyReservationProps {
 
 const MyReservation: FC<MyReservationProps> = ({ confirmId }) => {
   const { data: reservation, isLoading } = useSWR<Reservation>(
-    `/api/reservation/${confirmId}`
+    `/api/reservation/${confirmId}`,
+    () => getReservationByConfirmNumber(confirmId)
   );
+  const [showReviewModal, setShowReviewModal] = useState(false);
+
+  const alredyReviewed = () => {
+    console.log(reservation?.hotel.reviews);
+    return reservation?.hotel.reviews
+      .map((el) => el.confirmNumber)
+      .includes(confirmId);
+  };
+
   return (
     <div>
       <div className="flex items-center text-2xl font-semibold">
@@ -38,7 +50,7 @@ const MyReservation: FC<MyReservationProps> = ({ confirmId }) => {
       {reservation && (
         <>
           <div className="border-b pb-2">
-            <p className="text-2xl font-semibold mt-10">이용 전</p>
+            <p className="text-2xl font-semibold mt-10">상세 정보</p>
           </div>
           <div className="mt-4">
             <div className="flex">
@@ -77,6 +89,26 @@ const MyReservation: FC<MyReservationProps> = ({ confirmId }) => {
               <p className="text-sm">{`${reservation.name}`}</p>
             </div>
           </div>
+          {!alredyReviewed() && (
+            <div className="mt-10">
+              <Button
+                onClick={() => {
+                  setShowReviewModal(true);
+                }}
+                size={'lg'}
+              >
+                후기 남기기
+              </Button>
+            </div>
+          )}
+
+          <ReviewModal
+            name={reservation.name}
+            confirmId={confirmId}
+            show={showReviewModal}
+            hotelId={reservation.hotel.id}
+            closeModal={() => setShowReviewModal(false)}
+          />
         </>
       )}
     </div>

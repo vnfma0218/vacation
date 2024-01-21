@@ -17,6 +17,40 @@ export default defineType({
       type: 'reference',
       to: { type: 'location' },
     }),
+    {
+      title: 'Review',
+      name: 'reviews',
+      type: 'array',
+      of: [
+        {
+          title: 'Review',
+          name: 'review',
+          type: 'document',
+          fields: [
+            {
+              title: 'Comment',
+              name: 'comment',
+              type: 'string',
+            },
+            {
+              title: 'ConfirmNumber',
+              name: 'confirmNumber',
+              type: 'string',
+            },
+            {
+              title: 'Name',
+              name: 'name',
+              type: 'string',
+            },
+            {
+              title: 'Rate',
+              name: 'rate',
+              type: 'number',
+            },
+          ],
+        },
+      ],
+    },
 
     defineField({
       title: 'Tags',

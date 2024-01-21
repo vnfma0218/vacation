@@ -71,3 +71,25 @@ export async function getHotelsByFilters(location: string, filter: Filters) {
       });
     });
 }
+
+export async function addReview({
+  hotelId,
+  comment,
+  name,
+  rate,
+  confirmNumber,
+}: {
+  hotelId: string;
+  comment: string;
+  name: string;
+  confirmNumber: string;
+  rate: number;
+}) {
+  return client
+    .patch(hotelId)
+    .setIfMissing({ reviews: [] })
+    .append('reviews', [{ comment, name, rate, confirmNumber }])
+    .commit({
+      autoGenerateArrayKeys: true,
+    });
+}

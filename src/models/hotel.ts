@@ -4,6 +4,15 @@ export type HotelCategory = {
   image: string;
   hotelCount: number;
 };
+
+export type Review = {
+  id: string;
+  comment: string;
+  name: string;
+  rate: number;
+  confirmNumber: string;
+};
+
 export type Hotel = {
   id: string;
   name: string;
@@ -14,4 +23,5 @@ export type Hotel = {
   tags: string[];
   mainImage: string;
   category: string;
+  reviews: Review[];
 };

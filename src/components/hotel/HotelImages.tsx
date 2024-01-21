@@ -22,7 +22,7 @@ const HotelImages: FC<HotelImagesProps> = ({ images, name }) => {
           onClick={() => setShowModal({ show: true, index: 0 })}
           className="group cursor-pointer relative basis-1/2 h-[400px rounded-l-lg overflow-hidden"
         >
-          <Image src={mainImage ?? ''} alt="hotel detail" fill />
+          <Image src={mainImage ?? ''} priority alt="hotel detail" fill />
           <div className="absolute inset-0 bg-neutral-700 opacity-0 hover:opacity-30 ease-in-out"></div>
         </div>
         <div className="basis-1/2 h-[400px] grid grid-cols-2 gap-2">
