@@ -20,12 +20,12 @@ const MyReservation: FC<MyReservationProps> = ({ confirmId }) => {
   );
   const [showReviewModal, setShowReviewModal] = useState(false);
 
-  const alredyReviewed = () => {
-    console.log(reservation?.hotel.reviews);
-    return reservation?.hotel.reviews
-      .map((el) => el.confirmNumber)
-      .includes(confirmId);
-  };
+  // const alredyReviewed = () => {
+  //   console.log(reservation?.hotel.reviews);
+  //   return reservation?.hotel.reviews
+  //     .map((el) => el.confirmNumber)
+  //     .includes(confirmId);
+  // };
 
   return (
     <div>
@@ -89,7 +89,7 @@ const MyReservation: FC<MyReservationProps> = ({ confirmId }) => {
               <p className="text-sm">{`${reservation.name}`}</p>
             </div>
           </div>
-          {!alredyReviewed() && (
+          {/* {!alredyReviewed() && (
             <div className="mt-10">
               <Button
                 onClick={() => {
@@ -100,7 +100,7 @@ const MyReservation: FC<MyReservationProps> = ({ confirmId }) => {
                 후기 남기기
               </Button>
             </div>
-          )}
+          )} */}
 
           <ReviewModal
             name={reservation.name}

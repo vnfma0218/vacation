@@ -75,6 +75,7 @@ const HotelDetailModal: FC<HotelDetailModalProps> = ({
                         }
                         className="object-cover w-full py-5"
                         alt="hotel detail"
+                        sizes="100vw"
                         fill
                       />
                     </div>

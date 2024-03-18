@@ -4,7 +4,7 @@ import Image from 'next/image';
 const MainSection = () => {
   return (
     <section className="w-full h-[450px] relative">
-      <Image src={'/images/main.jpg'} alt="main banner" fill />
+      <Image priority src={'/images/main.jpg'} alt="main banner" fill />
       <div className="max-w-6xl relative mx-auto">
         <div className="z-40 w-full absolute min-[900px]:top-28 py-10 px-10">
           <div className="">
